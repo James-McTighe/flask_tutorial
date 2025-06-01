@@ -19,7 +19,7 @@ class User(db.Model, UserMixin):
     def get_reset_token(self, expires_sec=1800):
         s = Serializer(app.config['SECRET_KEY'])
         token = s.dumps({'user_id': self.id})
-        return s.loads(token, max_age=expires_sec)
+        return token
 
     @staticmethod
     def verify_reset_token(token):
